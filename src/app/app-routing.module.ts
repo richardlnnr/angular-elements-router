@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule) }
+  { path: '',   redirectTo: '/feature', pathMatch: 'full' },
+  { path: 'feature', loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule) }
 ];
 
 @NgModule({
