@@ -1,27 +1,47 @@
-# AngularElementsRouter
+# Angular Elements with router
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.17.
-
-## Development server
+This project was generated to demonstrate an issue in Angular Elements when you use children routes in a lazy loaded module.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Problem
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+When we start the application, the following error is displayed on the browser console:
+That problem only happen when the component is exported as a Custom Element.
 
-## Build
+```
+Error: No component factory found for ChildAComponent. Did you add it to @NgModule.entryComponents?
+    at noComponentFactoryError (main.f23fe886c4ec6dc7c11f.js:1)
+    at CodegenComponentFactoryResolver.resolveComponentFactory (main.f23fe886c4ec6dc7c11f.js:1)
+    at router_RouterOutlet.activateWith (main.f23fe886c4ec6dc7c11f.js:1)
+    at router_RouterOutlet.ngOnInit (main.f23fe886c4ec6dc7c11f.js:1)
+    at main.f23fe886c4ec6dc7c11f.js:1
+    at main.f23fe886c4ec6dc7c11f.js:1
+    at checkAndUpdateNode (main.f23fe886c4ec6dc7c11f.js:1)
+    at prodCheckAndUpdateNode (main.f23fe886c4ec6dc7c11f.js:1)
+    at Object.updateDirectives (4.0056da0152ee17b4fb13.js:1)
+    at Object.updateDirectives (main.f23fe886c4ec6dc7c11f.js:1)
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+Error: Uncaught (in promise): Error: No component factory found for ChildAComponent. Did you add it to @NgModule.entryComponents?
+Error: No component factory found for ChildAComponent. Did you add it to @NgModule.entryComponents?
+    at noComponentFactoryError (main.f23fe886c4ec6dc7c11f.js:1)
+    at CodegenComponentFactoryResolver.resolveComponentFactory (main.f23fe886c4ec6dc7c11f.js:1)
+    at router_RouterOutlet.activateWith (main.f23fe886c4ec6dc7c11f.js:1)
+    at ActivateRoutes.activateRoutes (main.f23fe886c4ec6dc7c11f.js:1)
+    at main.f23fe886c4ec6dc7c11f.js:1
+    at Array.forEach (<anonymous>)
+    at ActivateRoutes.activateChildRoutes (main.f23fe886c4ec6dc7c11f.js:1)
+    at ActivateRoutes.activateRoutes (main.f23fe886c4ec6dc7c11f.js:1)
+    at main.f23fe886c4ec6dc7c11f.js:1
+    at Array.forEach (<anonymous>)
+    at resolvePromise (polyfills.3c79a0eafef8c32a399a.js:1)
+    at resolvePromise (polyfills.3c79a0eafef8c32a399a.js:1)
+    at polyfills.3c79a0eafef8c32a399a.js:1
+    at ZoneDelegate.invokeTask (polyfills.3c79a0eafef8c32a399a.js:1)
+    at Object.onInvokeTask (main.f23fe886c4ec6dc7c11f.js:1)
+    at ZoneDelegate.invokeTask (polyfills.3c79a0eafef8c32a399a.js:1)
+    at Zone.runTask (polyfills.3c79a0eafef8c32a399a.js:1)
+    at drainMicroTaskQueue (polyfills.3c79a0eafef8c32a399a.js:1)
+```
